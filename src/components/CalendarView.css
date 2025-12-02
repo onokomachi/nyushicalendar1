@@ -1,0 +1,238 @@
+.calendar-container {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    position: relative;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--surface-color);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+}
+
+.calendar-header {
+    display: flex;
+}
+
+.school-name-header {
+    min-width: 230px;
+    position: sticky;
+    left: 0;
+    z-index: 20;
+    background: #f9fafb;
+    border-bottom: 2px solid var(--border-color);
+    border-right: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    font-weight: bold;
+}
+
+.dates-header-container {
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #f9fafb;
+    border-bottom: 2px solid var(--border-color);
+    width: max-content;
+}
+
+.date-header-cell {
+    min-width: 60px;
+    width: 60px;
+    padding: 0.5rem;
+    text-align: center;
+    border-right: 1px solid var(--border-color);
+    font-size: 0.875rem;
+}
+
+.date-header-cell.weekend {
+    background-color: #fef2f2;
+    color: #b91c1c;
+}
+
+.calendar-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.school-row-group {
+    display: flex;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.school-name-cell-group {
+    min-width: 150px;
+    width: 150px;
+    background: var(--surface-color);
+    position: sticky;
+    left: 0;
+    z-index: 5;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    padding: 0.5rem;
+}
+
+.school-tracks-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.track-row {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.track-row:last-child {
+    border-bottom: none;
+}
+
+.track-name-cell {
+    min-width: 80px;
+    width: 80px;
+    background: #f9fafb;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    position: sticky;
+    left: 150px;
+    z-index: 5;
+}
+
+.track-timeline {
+    display: flex;
+}
+
+.timeline-cell {
+    min-width: 60px;
+    width: 60px;
+    min-height: 50px;
+    padding: 4px 2px;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px;
+    position: relative;
+}
+
+.timeline-cell.weekend {
+    background-color: #fef2f2;
+}
+
+.exam-marker {
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    color: white;
+    white-space: nowrap;
+    background-color: #ef4444;
+    z-index: 2;
+    width: fit-content;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.exam-marker.result {
+    background-color: #3b82f6;
+}
+
+.exam-marker.application {
+    background-color: #10b981;
+}
+
+.exam-marker.procedure {
+    background-color: #10b981;
+}
+
+.event-bar {
+    position: absolute;
+    left: 0;
+    right: -1px;
+    top: 15px;
+    height: 20px;
+    background-color: rgba(79, 70, 229, 0.2);
+    border-top: 2px solid #4f46e5;
+    border-bottom: 2px solid #4f46e5;
+    display: flex;
+    align-items: center;
+    overflow: visible;
+    z-index: 1;
+}
+
+.event-label {
+    position: absolute;
+    left: 5px;
+    font-size: 0.7rem;
+    color: #4f46e5;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.print-button {
+    margin-left: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0.2rem;
+    border-radius: 4px;
+}
+
+.print-button:hover {
+    background-color: #e5e7eb;
+}
+
+@media print {
+    @page {
+        size: landscape;
+        margin: 5mm;
+    }
+
+    body {
+        background: white;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .app-container>header,
+    .print-button {
+        display: none !important;
+    }
+
+    .calendar-container {
+        border: none;
+        box-shadow: none;
+        overflow: visible;
+        display: block;
+        width: 100%;
+    }
+
+    .calendar-header {
+        position: static;
+    }
+
+    .school-name-header,
+    .dates-header-container,
+    .school-name-cell-group,
+    .track-name-cell {
+        position: static;
+        background: white !important;
+    }
+
+    .calendar-container {
+        transform: scale(0.6);
+        transform-origin: top left;
+        width: 160%;
+    }
+}
